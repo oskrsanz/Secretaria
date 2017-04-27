@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.atmira.formacion</groupId>
+  <artifactId>SecretariaClientWS</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>SecretariaClientWS</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jdk.version>1.8</jdk.version>
+  </properties>
+
+  <dependencies>
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.10</version>
+	</dependency>  
+	<dependency>
+		<groupId>org.mockito</groupId>
+		<artifactId>mockito-core</artifactId>
+		<version>1.9.0</version>
+		<scope>test</scope>
+	</dependency>
+    <dependency>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>jaxws-rt</artifactId>
+      <version>2.2.8</version>
+    </dependency>    
+  </dependencies>
+  
+  <build>
+  	<plugins>
+		<plugin>
+		   <artifactId>maven-compiler-plugin</artifactId>
+		   <version>2.0.2</version>
+		   <configuration>
+		       <source>${jdk.version}</source>
+		       <target>${jdk.version}</target>
+		   </configuration>
+		</plugin> 	
+  		<plugin>  			
+	        <groupId>org.codehaus.mojo</groupId>
+	        <artifactId>jaxws-maven-plugin</artifactId>
+	        <version>2.4.1</version>
+	        <executions>
+	        	<execution>
+	        		<phase>generate-sources</phase>
+        			<goals>
+	        			<goal>wsimport</goal>
+	        		</goals>	        	
+	        	</execution>
+	        </executions>	        
+      		<configuration>
+      			<verbose>true</verbose>
+      			<!-- 
+    				Para generar los fuentes es necesario hacer un clean. 
+      				El directorio "target/jaxws/stale" actua como "flag" para evitar repetir la generación de código si éste existe 
+   				 -->
+      			<wsdlDirectory>${basedir}/src/main/resources</wsdlDirectory>
+				<!-- 
+				<wsdlUrls>
+	       			<wsdlUrl>http://localhost:8080/SecretariaIT/ws/Profesor?wsdl</wsdlUrl>
+	   			</wsdlUrls> 
+   				-->
+      			<sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+      			<packageName>com.atmira.formacion.wsclient</packageName>
+      			<!-- Necesario para que no tengamos que añadir ficheros de autenticación -->
+      			<xdisableAuthenticator>true</xdisableAuthenticator>
+			    <keep>true</keep>
+ 				<vmArgs>
+					<!-- Atributo necesario para habilitar el acceso a los .xsd del wsdl -->
+			        <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+			    </vmArgs>
+      		</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+</project>

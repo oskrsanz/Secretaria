@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. 
+	RI's version is JAX-WS RI 2.2.3-b01-. -->
+<xs:schema xmlns:tns="http://service.ws.secretariaIT.formacion.atmira.com/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0"
+	targetNamespace="http://service.ws.secretariaIT.formacion.atmira.com/">
+
+	<xs:element name="AddAlumno" type="tns:AddAlumno" />
+
+	<xs:element name="AddAlumnoResponse" type="tns:AddAlumnoResponse" />
+
+	<xs:element name="AddProfesor" type="tns:AddProfesor" />
+
+	<xs:element name="AddProfesorResponse" type="tns:AddProfesorResponse" />
+
+	<xs:element name="calcularPromedioProfesor" type="tns:calcularPromedioProfesor" />
+
+	<xs:element name="calcularPromedioProfesorResponse" type="tns:calcularPromedioProfesorResponse" />
+
+	<xs:complexType name="AddAlumno">
+		<xs:sequence>
+			<xs:element name="dniProfesor" type="xs:string" minOccurs="0" />
+			<xs:element name="dniAlumno" type="xs:string" minOccurs="0" />
+			<xs:element name="nombreAlumno" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="nota" type="xs:double" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AddAlumnoResponse">
+		<xs:sequence>
+			<xs:element name="Resultado" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="calcularPromedioProfesor">
+		<xs:sequence>
+			<xs:element name="dni" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="calcularPromedioProfesorResponse">
+		<xs:sequence>
+			<xs:element name="Resultado" type="xs:double" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AddProfesor">
+		<xs:sequence>
+			<xs:element name="dni" type="xs:string" minOccurs="0" />
+			<xs:element name="nombre" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AddProfesorResponse">
+		<xs:sequence>
+			<xs:element name="Resultado" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
